@@ -56,7 +56,7 @@ const routes: Array<RouteConfig> = [
     }
   },
   {
-    path: '/js/task/:id',
+    path: '/js/:id',
     component: JS,
     name: 'js_task', 
     meta: {
