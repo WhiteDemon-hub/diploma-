@@ -130,7 +130,7 @@ export default {
       },
       async Next()
       {
-        this.$router.push({ path: `/js/task/${Number(this.$route.params.id) + 1}` })
+        this.$router.push({ path: `/js/${Number(this.$route.params.id) + 1}` })
         await this.LoadPage();
         this.$forceUpdate();
       },
