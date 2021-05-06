@@ -89,7 +89,7 @@ export default {
               })
               if(success)
               {
-                    this.status = true;
+                    this.status = false;
                     let st = await firebase
                     .fs
                     .collection('user_passing_task_js')

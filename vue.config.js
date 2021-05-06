@@ -1,5 +1,5 @@
 module.exports = {
-  outputDir:  __dirname + "/../public",
+  outputDir:  __dirname + "/html",
   publicPath: '/',
   indexPath: 'index.html',
   pluginOptions: {
