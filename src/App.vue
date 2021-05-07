@@ -12,6 +12,7 @@
 import Vue from 'vue';
 import Menu from './components/Menu.vue'
 import Footer from './components/Footer.vue'
+import firebase from './firebase/index';
 
 export default Vue.extend({
   name: 'App',
@@ -19,6 +20,25 @@ export default Vue.extend({
   {
     Menu,
     Footer
+  },
+  mounted()
+  {
+    // var currentUser;
+    firebase.firebase.auth().onAuthStateChanged(async (user : any) => {
+          console.log(user.uid);
+          const data : any = await firebase.fs.collection('users').doc(user.uid).get();
+          localStorage.setItem('user', JSON.stringify(data.data()));
+          this.$store.dispatch('user/LoadUser', localStorage.user)
+          this.$forceUpdate;
+          console.log(data.data())
+    });
+    // const user : any = await  firebase.firebase.auth().currentUser;
+
+    // console.log(user);
+
+    // const data : any = await firebase.fs.collection('users').doc(user.uid).get();
+    // console.log(data.data())
+    // this.$forceUpdate
   },
   data: () => ({
     //

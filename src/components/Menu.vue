@@ -108,7 +108,7 @@ export default Vue.extend({
     }
   },
   mounted () {
-    this.$store.dispatch('user/LoadUser', localStorage.user)
+    // this.$store.dispatch('user/LoadUser', localStorage.user)
     // this.LoadUser(localStorage.user);
   },
 })

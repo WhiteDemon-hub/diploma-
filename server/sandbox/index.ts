@@ -47,26 +47,27 @@ function  StartTest(id : string, code: string)
     }
     function jsTaskOne(code: string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "Sum(15, 5) + Multiplication(3, 4)";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = Sum(15, 5) + Multiplication(3, 4);";
+            
+            vm.run(test_code_one);
+            console.log(ext.c);
             let correct : boolean = false;
-            if(answer == 32)
+            if(ext.test_one == 32)
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         } 
@@ -79,16 +80,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5)";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5)";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == -80)
+            if(ext.test_two == -80)
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_two,
                 correct: correct,
             };
         } 
@@ -102,16 +103,16 @@ function  StartTest(id : string, code: string)
 
         try 
         {
-            let test_code_one = code + "Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5) - Division(9, 3) - (Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5) - Division(9, 3))";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_three = Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5) - Division(9, 3) - (Sum(3, 4) + (Multiplication(8, 4) - Division(9, 3)) * Difference(2, 5) - Division(9, 3))";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 0)
+            if(ext.test_three == 0)
             {
                 correct = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_three,
                 correct: correct,
             };
         } 
@@ -127,26 +128,25 @@ function  StartTest(id : string, code: string)
 
     function jsTaskTow(code : string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "SquareSumRoot(['1', '5', '3', '13'])";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = SquareSumRoot(['1', '5', '3', '13'])";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 204)
+            if(ext.test_one  == 204)
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one ,
                 correct: correct,
             };
         }
@@ -159,16 +159,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "SquareSumRoot(['2', '4', '8', '20'])";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = SquareSumRoot(['2', '4', '8', '20'])";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer.toFixed(2) == 10.71)
+            if(ext.test_two.toFixed(2) == 10.71)
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_two ,
                 correct: correct,
             };
         }
@@ -181,18 +181,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "SquareSumRoot(['-1', '-5', '2', '6', '4', '7', '4', '8', '20'])";
+            let test_code_one = code + "ext.test_three = SquareSumRoot(['-1', '-5', '2', '6', '4', '7', '4', '8', '20'])";
             let answer  = vm.run(test_code_one);
             let correct1 : boolean = false;
-            console.log(answer.toFixed(2));
-            if(answer.toFixed(2) == 90.16)
+            if(ext.test_three.toFixed(2) == 90.16)
             {
-                console.log('aaaa');
                 correct1 = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_tow,
                 correct: correct1,
             };
         }
@@ -207,26 +205,25 @@ function  StartTest(id : string, code: string)
     }
     function jsTaskThree(code : string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "FibonacciNumber(10)";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = FibonacciNumber(10)";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 34)
+            if(ext.test_one == 55)
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         }
@@ -239,16 +236,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "FibonacciNumber(20)";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = FibonacciNumber(20)";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 4181)
+            if(ext.test_two == 6765)
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_two,
                 correct: correct,
             };
         }
@@ -261,16 +258,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "FibonacciNumber(100)";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_three = FibonacciNumber(100)";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 218922995834555200000)
+            if(ext.test_three == 354224848179262000000)
             {
                 correct = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_three,
                 correct: correct,
             };
         }
@@ -285,26 +282,25 @@ function  StartTest(id : string, code: string)
     }
     function jsTaskFour(code : string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "palindrome('Anna')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = palindrome('Anna')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == true)
+            if(ext.test_one == true)
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         }
@@ -317,16 +313,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "palindrome('Tron')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_four = palindrome('Tron')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == false)
+            if(ext.test_four == false)
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_four,
                 correct: correct,
             };
         }
@@ -339,16 +335,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "palindrome('Sum summus slon')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = palindrome('Sum summus slon')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == false)
+            if(ext.test_two == false)
             {
                 correct = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_two,
                 correct: correct,
             };
         }
@@ -361,16 +357,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "palindrome('Sum summus mus')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_three = palindrome('Sum summus mus')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == true)
+            if(ext.test_three == true)
             {
                 correct = true;
             }
             result[3] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_three,
                 correct: correct,
             };
         }
@@ -386,26 +382,25 @@ function  StartTest(id : string, code: string)
 
     function jsTaskFive(code : string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "removeSpace('This    random   text!')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = removeSpace('This    random   text!')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 'This random text!')
+            if(ext.test_one == 'This random text!')
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         }
@@ -418,16 +413,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "removeSpace('Lorem ipsum dolor sit amet.')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = removeSpace('Lorem ipsum dolor sit amet.')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 'Lorem ipsum dolor sit amet.')
+            if(ext.test_two == 'Lorem ipsum dolor sit amet.')
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_two,
                 correct: correct,
             };
         }
@@ -440,16 +435,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "removeSpace('Sum    summus   mus')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_three = removeSpace('Sum    summus   mus')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 'Sum summus mus')
+            if(ext.test_three == 'Sum summus mus')
             {
                 correct = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_three,
                 correct: correct,
             };
         }
@@ -465,26 +460,25 @@ function  StartTest(id : string, code: string)
 
     function jsTaskSix(code : string)
     {
-        const vm : VM = new VM({
-            sandbox: {
-            console: {
-            log: function (str) {console.log (str);}
-            }
-            }
-            });
+        let ext : any = {};
+        const vm : NodeVM = new NodeVM( {
+            console: 'inherit',
+            // pass our declared ext variable to the sandbox
+            sandbox: { ext },
+          });
         let result : any = []; 
         try 
         {
-            let test_code_one = code + "Distance('p', 'm')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_one = Distance('p', 'm')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 2)
+            if(ext.test_one == 2)
             {
                 correct = true;
             }
             result[0] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         }
@@ -497,16 +491,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "Distance('й', 'я')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_two = Distance('й', 'я')";
+            vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 21)
+            if(ext.test_two == 21)
             {
                 correct = true;
             }
             result[1] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_one,
                 correct: correct,
             };
         }
@@ -519,16 +513,16 @@ function  StartTest(id : string, code: string)
         }
         try 
         {
-            let test_code_one = code + "Distance('c', 'c')";
-            let answer  = vm.run(test_code_one);
+            let test_code_one = code + "ext.test_three = Distance('c', 'c')";
+             vm.run(test_code_one);
             let correct : boolean = false;
-            if(answer == 0)
+            if(ext.test_three == 0)
             {
                 correct = true;
             }
             result[2] = {
                 type: 'correct',
-                answer: answer,
+                answer: ext.test_three,
                 correct: correct,
             };
         }

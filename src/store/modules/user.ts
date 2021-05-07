@@ -1,3 +1,17 @@
+import firebase from '../../firebase/index'
+
+const getUser = () =>
+{
+  let corectUser;
+  firebase.firebase.auth().onAuthStateChanged(async (user : any) => {
+      console.log(user.uid);
+      const data : any = await firebase.fs.collection('users').doc(user.uid).get();
+      localStorage.setItem('user', JSON.stringify(data.data()));
+      corectUser = JSON.stringify(data.data())
+  });
+  return corectUser;
+}
+
 export default
 {
   namespaced: true,
@@ -10,7 +24,7 @@ export default
       ClearUser({commit} : any)
       {
         commit('MutationUser', null)
-      }
+      },
     },
   mutations:
     {
@@ -20,7 +34,7 @@ export default
     },
   state:
     {
-      user: localStorage.user,
+      user: getUser(),
     },
   getters:
     {

@@ -19,13 +19,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // // window.fs : any = fs;
 
-// declare global {
-//   firebase;
-//   firestore: firebase.firestore()
-// }
-
 // const window.firestore = firebase.firestore()
-// window.firebase = firebase
 
 
 Vue.config.productionTip = false

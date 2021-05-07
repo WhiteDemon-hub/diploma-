@@ -82,8 +82,9 @@ export default {
 
               let success = true;
               this.result.forEach(res => {
-                  if(res.corect == false)
+                  if(res.type == "error")
                   {
+                      
                       success = false;
                   }
               })
