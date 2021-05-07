@@ -1,19 +1,5 @@
 import firebase from '../../firebase/index'
 
-const getUser = () =>
-{
-  let corectUser;
-  firebase.firebase.auth().onAuthStateChanged(async (user : any) => {
-      const data : any = await firebase.fs.collection('users').doc(user.uid).get();
-      localStorage.setItem('user', JSON.stringify(data.data()));
-      corectUser = JSON.stringify(data.data())
-  });
-  
-
-  return corectUser;
-}
-
-getUser();
 
 export default
 {
@@ -22,12 +8,23 @@ export default
     {
       LoadUser ({ commit } : any ) 
       {
-        commit('MutationUser', localStorage.user)
+
+          firebase.firebase.auth().onAuthStateChanged(async (user : any) => {
+            if(user)
+            {
+              const data : any = await firebase.fs.collection('users').doc(user.uid).get();
+            
+              commit('MutationUser', JSON.stringify(data.data()));
+            }
+            
+        });
+        
       },
       ClearUser({commit} : any)
       {
         commit('MutationUser', null)
       },
+
     },
   mutations:
     {
