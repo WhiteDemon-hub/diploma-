@@ -107,7 +107,6 @@ export default {
                     statusArray[index].code = this.code;
 
                     index = statusArray.indexOf(statusArray.find(x => x.number == Number(this.$route.params.id) + 1));
-                    console.log(index)
                     if(index < 0)
                     {
                         
@@ -137,20 +136,24 @@ export default {
       },
       async LoadPage()
       {
-        console.log(this.$route.params.id);
+        //   console.log(JSON.parse(this.$store.getters['user/GetUser']).uid);
         let status = await firebase
         .fs
         .collection('user_passing_task_js')
         .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
         .get();
 
+        console.log(JSON.parse(this.$store.getters['user/GetUser']).uid)
+
+
+
         status.forEach(element => {
+            console.log(element);
             this.status = !element.data().status[Number(this.$route.params.id) - 1].status;
             this.code = element.data().status[Number(this.$route.params.id) - 1].code;
             this.id = element.id;
         });
 
-        console.log(this.status)
 
         let queue = await firebase
         .fs

@@ -143,11 +143,9 @@ export default Vue.extend({
         deleteUser()
         {
             const user : any = firebase.firebase.auth().currentUser;
-            console.log(user);
             let credential : any;
 
             user.reauthenticateWithCredential(credential)
-            // console.log(this.notification.text);
 
             user.delete().then(() => {
                 localStorage.removeItem('user');
@@ -164,7 +162,6 @@ export default Vue.extend({
             if ((this.$refs.update_password as Vue & { validate: () => boolean }).validate())
             {
                 const user : any = firebase.firebase.auth().currentUser;
-                // console.log(user);
                 // let credential : any = new firebase.firebase.auth.AuthCredential()
                 // await firebase.firebase.auth().currentUser.getIdToken(true)
                 // user.reauthenticateWithCredential(user.credential)

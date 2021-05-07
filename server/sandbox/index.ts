@@ -190,7 +190,7 @@ function  StartTest(id : string, code: string)
             }
             result[2] = {
                 type: 'correct',
-                answer: ext.test_tow,
+                answer: ext.test_three,
                 correct: correct1,
             };
         }

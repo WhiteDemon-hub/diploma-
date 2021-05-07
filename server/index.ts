@@ -15,7 +15,6 @@ export default (app, http) => {
 
   app.post('/test/js/:id', (req: express.Request, res: express.Response) => {
     const answer = sandbox.StartTest(req.params.id, req.body.code);
-    console.log('answer', answer);
     res.json(answer);
   });
   //

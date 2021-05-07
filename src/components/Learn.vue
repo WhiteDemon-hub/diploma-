@@ -240,13 +240,9 @@
 
     async mounted()
     {
-      // const user : any = await firebase.firebase.auth().currentUser;
-      // console.log(user);
       const main : any = document.querySelector("#main");
       main.classList.remove("d-flex");
-      
-      console.log(JSON.parse(this.$store.getters['user/GetUser']).uid);
-      const isOpen : any  = await firebase
+            const isOpen : any  = await firebase
       .fs
       .collection('user_passing_task_js')
       .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
@@ -259,8 +255,6 @@
         });
       }
 
-      console.log(this.open);
-
       let query = await firebase
       .fs
       .collection('js_task')
@@ -270,8 +264,6 @@
       query.forEach((element : any) => {
         this.task_js.push(element.data())
       });
-
-      console.log(this.task_js);
     }
   })
 </script>
