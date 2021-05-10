@@ -134,7 +134,7 @@ html, body {
   /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
   background: #303030;
 
-
+  min-width: 400px;
   /* you must provide font-family font-size line-height. Example: */
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   font-size: 14px;

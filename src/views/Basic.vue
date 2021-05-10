@@ -3,12 +3,12 @@
         <h2 class="text-center">Основы</h2>
         <div v-if="task.type == 'task'">
             <h2 v-if="task" class="mt-5 text-center">{{task.name}}</h2>
-            <div class="d-flex m-5">
-                <div class="w-50">
+            <div class="d-flex m-5 flex-wrap">
+                <div class="w-50 w-min-content p-2">
                     <prism-editor class="editor" v-model="code" :highlight="highlighter" line-numbers></prism-editor>
                     
                 </div>
-                <div class="w-50 ml-5">
+                <div class="w-50 p-2">
                     <div>
                         <h3 class="">Задача:</h3>
                         <div v-if="task" v-html="task.content">
