@@ -236,6 +236,8 @@ export default {
       },
       async LoadPage()
       {
+        this.status = true;
+        this.result = [];
         let status = await firebase
         .fs
         .collection('basics_user')
@@ -263,8 +265,7 @@ export default {
             this.task = element.data();
         });
 
-        this.status = true;
-        this.result = [];
+        
       }
     },
 }

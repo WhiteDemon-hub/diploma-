@@ -238,6 +238,8 @@ export default {
       },
       async LoadPage()
       {
+        this.status = true;
+        this.result = [];
         let status = await firebase
         .fs
         .collection('js_cycles_and_conditions_user')
@@ -268,8 +270,7 @@ export default {
             this.task = element.data();
         });
 
-        this.status = true;
-        this.result = [];
+        
       }
     },
 }

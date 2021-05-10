@@ -236,6 +236,8 @@ export default {
       },
       async LoadPage()
       {
+        this.status = true;
+        this.result = [];
         let status = await firebase
         .fs
         .collection('js_introduction_user')
@@ -262,8 +264,7 @@ export default {
         js_introduction.forEach(element => {
             this.task = element.data();
         });
-        this.status = true;
-        this.result = [];
+        
       }
     },
 }
