@@ -105,13 +105,9 @@ export default Vue.extend({
                 login: user.data().login,
                 email: user.data().email,
                 avatar: user.data().avatar,
-                
+                uid: userCredential.user.uid
             }
-            localStorage.setItem('user', JSON.stringify(data));
-            this.LoadUser(localStorage.user);
-            
-            
-            
+            this.LoadUser();
             this.$router.push({ name: 'Home' })
           })
           .catch((error) => {

@@ -108,8 +108,6 @@ export default Vue.extend({
                         .doc(result.user.uid)
                         createUser.set(data)  
                     }
-                    localStorage.setItem('user', JSON.stringify(data));
-                    this.LoadUser(localStorage.user);
                     let status = await firebase
                     .fs
                     .collection('user_passing_task_js')

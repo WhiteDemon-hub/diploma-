@@ -21,7 +21,7 @@ export default Vue.extend({
     Menu,
     Footer
   },
-  mounted()
+  created()
   {
     this.$store.dispatch('user/LoadUser')
     this.$forceUpdate;

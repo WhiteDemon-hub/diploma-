@@ -12,27 +12,34 @@ const app = express();
 export default (app, http) => {
   app.use(express.json());
 
-
-  app.post('/test/js/:id', (req: express.Request, res: express.Response) => {
-    const answer = sandbox.StartTest(req.params.id, req.body.code);
+  app.post('/test/js/introduction/:id', (req: express.Request, res: express.Response) => {
+    const answer = sandbox.Introduction(req.params.id, req.body.code);
+    console.log(answer);
     res.json(answer);
   });
-  //
-  // app.get('/foo', (req, res) => {
-  //   res.json({msg: 'foo'});
-  // });
-  //
-  // app.post('/bar', (req, res) => {
-  //   res.json(req.body);
-  // });
-  // 
-  // optional support for socket.io
-  // 
-  // let io = socketIO(http);
-  // io.on("connection", client => {
-  //   client.on("message", function(data) {
-  //     // do something
-  //   });
-  //   client.emit("message", "Welcome");
-  // });
+
+  app.post('/test/js/cycles_and_conditions/:id', (req: express.Request, res: express.Response) => {
+    const answer = sandbox.CyclesAndConditions(req.params.id, req.body.code);
+    console.log(answer);
+    res.json(answer);
+  });
+
+  app.post('/test/js/function/:id', (req: express.Request, res: express.Response) => {
+    const answer = sandbox.FunctionTest(req.params.id, req.body.code);
+    console.log(answer);
+    res.json(answer);
+  });
+
+  app.post('/test/js/error/:id', (req: express.Request, res: express.Response) => {
+    const answer = sandbox.ErrorTest(req.params.id, req.body.code);
+    console.log(answer);
+    res.json(answer);
+  });
+
+  app.post('/test/js/object/:id', (req: express.Request, res: express.Response) => {
+    const answer = sandbox.ObjectTest(req.params.id, req.body.code);
+    console.log(answer);
+    res.json(answer);
+  });
+  
 }

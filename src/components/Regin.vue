@@ -144,8 +144,6 @@ export default Vue.extend({
               uid: userCredential.user.uid
             }
             user.set(data)
-            localStorage.setItem('user', JSON.stringify(data));
-            this.LoadUser(localStorage.user);
             const newUser : any = firebase.firebase.auth().currentUser
             newUser.sendEmailVerification();
               await firebase.fs.collection('user_passing_task_js').doc().set({
