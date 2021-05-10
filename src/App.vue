@@ -131,22 +131,29 @@ html, body {
 }
 
 .editor {
-/* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
-background: #817d7d;
-color: rgb(255, 255, 255);
+  /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
+  background: #303030;
 
-/* you must provide font-family font-size line-height. Example: */
-font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
-font-size: 14px;
-line-height: 1.5;
-padding: 5px;
-min-height: 300px;
-max-height: 600px;
+
+  /* you must provide font-family font-size line-height. Example: */
+  font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 5px;
+  min-height: 300px;
+  max-height: 600px;
+}
+
+.prism-editor__editor
+{
+    color: rgb(255, 255, 255);
+    
 }
 
 /* optional class for removing the outline */
 .prism-editor__textarea:focus {
-outline: none;
+  outline: none;
+  caret-color: white;
 }
 
    .h100 {

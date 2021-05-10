@@ -262,6 +262,8 @@ export default {
         js_introduction.forEach(element => {
             this.task = element.data();
         });
+        this.status = true;
+        this.result = [];
       }
     },
 }

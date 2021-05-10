@@ -267,6 +267,9 @@ export default {
             // console.log(element.data());
             this.task = element.data();
         });
+
+        this.status = true;
+        this.result = [];
       }
     },
 }

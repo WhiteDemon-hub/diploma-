@@ -262,6 +262,9 @@ export default {
         basics.forEach(element => {
             this.task = element.data();
         });
+
+        this.status = true;
+        this.result = [];
       }
     },
 }
