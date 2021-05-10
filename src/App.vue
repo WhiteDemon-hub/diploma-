@@ -134,7 +134,8 @@ html, body {
   /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
   background: #303030;
 
-  min-width: 400px;
+  min-width: 250px;
+  width: 100%;
   /* you must provide font-family font-size line-height. Example: */
   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
   font-size: 14px;
@@ -176,5 +177,17 @@ html, body {
         background: rgba(78, 73, 71, 0.432);
         padding: 20px;
         border-radius: 5px;
+    }
+
+    .wrap_editor
+    {
+      width: 50%;
+    }
+
+    @media (max-width: 700px) {
+      .wrap_editor
+      {
+        width: 100% !important;
+      }
     }
 </style>
