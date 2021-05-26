@@ -236,11 +236,13 @@
       js_error_open: [] as any,
       js_object_and_class: [] as any,
       js_object_and_class_open: [] as any,
+      is_load: false,
     }),
     methods: 
     {
       async Load() 
       {
+        this.is_load = true;
       const main : any = document.querySelector("#main");
       main.classList.remove("d-flex");
 
@@ -378,7 +380,7 @@
         js_object_and_class_open.forEach((element : any) => {
           this.js_object_and_class_open = element.data().status;
         });
-      
+        
       }
     },
     computed:
@@ -391,9 +393,37 @@
     watch:{
       GetUser:{
         handler:function(){
+          if(!this.is_load)
           this.Load();
         },
       }
     },
+    mounted()
+    {
+      if(this.GetUser)
+      {
+        if(!this.is_load)
+        this.Load();
+        console.log('aaa');
+      }
+      
+      // else
+      // {
+      //   this.task_js = [];
+      //   this.open = [],
+      //   this.js_introduction = [],
+      //   this.introduction_open = [],
+      //   this.basics = [],
+      //   this.basics_open = [],
+      //   this.js_cycles_and_conditions = [],
+      //   this.js_cycles_and_conditions_open = [],
+      //   this.js_function = [],
+      //   this.js_function_open = [],
+      //   this.js_error = [],
+      //   this.js_error_open = [],
+      //   this.js_object_and_class = [],
+      //   this.js_object_and_class_open = [];
+      // }
+    }
   })
 </script>
