@@ -242,144 +242,144 @@
     {
       async Load() 
       {
-        this.is_load = true;
-      const main : any = document.querySelector("#main");
-      main.classList.remove("d-flex");
+          this.is_load = true;
+        const main : any = document.querySelector("#main");
+        main.classList.remove("d-flex");
 
-      const js_introduction : any = await firebase
-      .fs
-      .collection('js_introduction')
-      .orderBy('number')
-      .get();
-
-      js_introduction.forEach((element : any) => {
-        this.js_introduction.push(element.data())
-      });
-
-      
-
-      const open_introduction : any = await firebase
-      .fs
-      .collection('js_introduction_user')
-      .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
-      .get();
-
-      open_introduction.forEach((element : any) => {
-        this.introduction_open = element.data().status;
-      });
-      
-      /////
-      
-      const basics : any = await firebase
-      .fs
-      .collection('basics')
-      .orderBy('number')
-      .get();
-
-
-      basics.forEach((element : any) => {
-        this.basics.push(element.data());
-      });
-
-
-      const basics_open : any = await firebase
-      .fs
-      .collection('basics_user')
-      .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
-      .get();
-
-      basics_open.forEach((element : any) => {
-        this.basics_open = element.data().status;
-      });
-
-      ///
-
-      const js_cycles_and_conditions : any = await firebase
-      .fs
-      .collection("js_cycles_and_conditions ")
-      .orderBy('number')
-      .get();
-
-
-      js_cycles_and_conditions.forEach((element : any) => {
-        this.js_cycles_and_conditions.push(element.data());
-      });
-
-      const js_cycles_and_conditions_open : any = await firebase
-      .fs
-      .collection('js_cycles_and_conditions_user')
-      .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
-      .get();
-
-      js_cycles_and_conditions_open.forEach((element : any) => {
-        this.js_cycles_and_conditions_open = element.data().status;
-      });
-
-      /// Функции
-         const js_function : any = await firebase
+        const js_introduction : any = await firebase
         .fs
-        .collection("function")
+        .collection('js_introduction')
+        .orderBy('number')
+        .get();
+
+        js_introduction.forEach((element : any) => {
+          this.js_introduction.push(element.data())
+        });
+
+        
+
+        const open_introduction : any = await firebase
+        .fs
+        .collection('js_introduction_user')
+        .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
+        .get();
+
+        open_introduction.forEach((element : any) => {
+          this.introduction_open = element.data().status;
+        });
+        
+        /////
+        
+        const basics : any = await firebase
+        .fs
+        .collection('basics')
         .orderBy('number')
         .get();
 
 
-        js_function.forEach((element : any) => {
-          this.js_function.push(element.data());
+        basics.forEach((element : any) => {
+          this.basics.push(element.data());
         });
 
-        const js_function_open : any = await firebase
+
+        const basics_open : any = await firebase
         .fs
-        .collection('function_user')
+        .collection('basics_user')
         .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
         .get();
 
-        js_function_open.forEach((element : any) => {
-          this.js_function_open = element.data().status;
+        basics_open.forEach((element : any) => {
+          this.basics_open = element.data().status;
         });
 
-        /// Ошибки
-         const js_error : any = await firebase
+        ///
+
+        const js_cycles_and_conditions : any = await firebase
         .fs
-        .collection("js_error")
+        .collection("js_cycles_and_conditions ")
         .orderBy('number')
         .get();
 
 
-        js_error.forEach((element : any) => {
-          this.js_error.push(element.data());
+        js_cycles_and_conditions.forEach((element : any) => {
+          this.js_cycles_and_conditions.push(element.data());
         });
 
-        const js_error_open : any = await firebase
+        const js_cycles_and_conditions_open : any = await firebase
         .fs
-        .collection('js_error_user')
+        .collection('js_cycles_and_conditions_user')
         .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
         .get();
 
-        js_error_open.forEach((element : any) => {
-          this.js_error_open = element.data().status;
+        js_cycles_and_conditions_open.forEach((element : any) => {
+          this.js_cycles_and_conditions_open = element.data().status;
         });
 
-        /// Объекты
-         const js_object_and_class : any = await firebase
-        .fs
-        .collection("js_object_and_class")
-        .orderBy('number')
-        .get();
+        /// Функции
+          const js_function : any = await firebase
+          .fs
+          .collection("function")
+          .orderBy('number')
+          .get();
 
 
-        js_object_and_class.forEach((element : any) => {
-          this.js_object_and_class.push(element.data());
-        });
+          js_function.forEach((element : any) => {
+            this.js_function.push(element.data());
+          });
 
-        const js_object_and_class_open : any = await firebase
-        .fs
-        .collection('js_object_and_class_user')
-        .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
-        .get();
+          const js_function_open : any = await firebase
+          .fs
+          .collection('function_user')
+          .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
+          .get();
 
-        js_object_and_class_open.forEach((element : any) => {
-          this.js_object_and_class_open = element.data().status;
-        });
+          js_function_open.forEach((element : any) => {
+            this.js_function_open = element.data().status;
+          });
+
+          /// Ошибки
+          const js_error : any = await firebase
+          .fs
+          .collection("js_error")
+          .orderBy('number')
+          .get();
+
+
+          js_error.forEach((element : any) => {
+            this.js_error.push(element.data());
+          });
+
+          const js_error_open : any = await firebase
+          .fs
+          .collection('js_error_user')
+          .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
+          .get();
+
+          js_error_open.forEach((element : any) => {
+            this.js_error_open = element.data().status;
+          });
+
+          /// Объекты
+          const js_object_and_class : any = await firebase
+          .fs
+          .collection("js_object_and_class")
+          .orderBy('number')
+          .get();
+
+
+          js_object_and_class.forEach((element : any) => {
+            this.js_object_and_class.push(element.data());
+          });
+
+          const js_object_and_class_open : any = await firebase
+          .fs
+          .collection('js_object_and_class_user')
+          .where('uid', '==', JSON.parse(this.$store.getters['user/GetUser']).uid)
+          .get();
+
+          js_object_and_class_open.forEach((element : any) => {
+            this.js_object_and_class_open = element.data().status;
+          });
         
       }
     },
