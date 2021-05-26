@@ -395,10 +395,5 @@
         },
       }
     },
-    mounted()
-    {
-      if(this.GetUser)
-      this.Load();
-    }
   })
 </script>
