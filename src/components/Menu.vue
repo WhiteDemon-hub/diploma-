@@ -20,7 +20,7 @@
                             >
                                 <img :src="User.avatar" alt="Avatar" class="v-avatar">
                             </v-avatar>
-                            <v-avatar v-else class="bg-primary h1 text-white" :size="48">
+                            <v-avatar class="bg-primary h1 text-white" :size="36" color="blue">
                                 <span class="white--text headline">{{User.login | name}}</span>
                             </v-avatar>
                     </v-btn>

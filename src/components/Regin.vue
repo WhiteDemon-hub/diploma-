@@ -53,7 +53,7 @@
             </div>
            <v-file-input
                 v-model="form.image"
-                :rules="rule_file"
+                :rules="[rules.required, rule_file]"
                 accept="image/png, image/jpeg, image/bmp"
                 placeholder="Выберете аватар"
                 prepend-icon="mdi-camera"
