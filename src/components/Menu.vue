@@ -20,9 +20,9 @@
                             >
                                 <img :src="User.avatar" alt="Avatar" class="v-avatar">
                             </v-avatar>
-                            <v-avatar class="bg-primary h1 text-white" :size="36" color="blue">
+                            <!-- <v-avatar class="bg-primary h1 text-white" :size="36" color="blue">
                                 <span class="white--text headline">{{User.login | name}}</span>
-                            </v-avatar>
+                            </v-avatar> -->
                     </v-btn>
                 </template>
                 <v-card class="min-w-200">
