@@ -18,6 +18,8 @@ firebase.initializeApp({
 
 const fs: any = firebase.firestore();
 
+
+
 const google: firebase.auth.AuthProvider = new firebase.auth.GoogleAuthProvider();
 const github: firebase.auth.AuthProvider = new firebase.auth.GithubAuthProvider();
 

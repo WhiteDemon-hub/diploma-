@@ -103,6 +103,7 @@ export default Vue.extend({
       firebase.firebase.auth().signOut().then(() => {
         localStorage.removeItem('user');
         this.$store.dispatch('user/ClearUser')
+        localStorage.setItem('load_user', '0');
         this.$router.push({ name: 'Login' })
       })
     }

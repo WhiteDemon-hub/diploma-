@@ -95,6 +95,7 @@ export default Vue.extend({
     ...mapActions('user', ['LoadUser']),
     Auth (): void {
       if ((this.$refs.login as Vue & { validate: () => boolean }).validate()) {
+        
         firebase.firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
           .then(async (userCredential : any) => {
             const user = await firebase.fs
@@ -108,6 +109,7 @@ export default Vue.extend({
                 uid: userCredential.user.uid
             }
             this.LoadUser();
+            localStorage.setItem('load_user', '1');
             this.$router.push({ name: 'Home' })
           })
           .catch((error) => {

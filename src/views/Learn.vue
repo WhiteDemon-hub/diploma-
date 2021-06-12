@@ -242,7 +242,8 @@
     {
       async Load() 
       {
-          this.is_load = true;
+          
+        this.is_load = true;
         const main : any = document.querySelector("#main");
         main.classList.remove("d-flex");
 
@@ -393,37 +394,14 @@
     watch:{
       GetUser:{
         handler:function(){
-          if(!this.is_load)
+          if(!this.is_load && localStorage.getItem('load_user') == '1')
           this.Load();
         },
       }
     },
     mounted()
     {
-      if(this.GetUser)
-      {
-        if(!this.is_load)
-        this.Load();
-        console.log('aaa');
-      }
-      
-      // else
-      // {
-      //   this.task_js = [];
-      //   this.open = [],
-      //   this.js_introduction = [],
-      //   this.introduction_open = [],
-      //   this.basics = [],
-      //   this.basics_open = [],
-      //   this.js_cycles_and_conditions = [],
-      //   this.js_cycles_and_conditions_open = [],
-      //   this.js_function = [],
-      //   this.js_function_open = [],
-      //   this.js_error = [],
-      //   this.js_error_open = [],
-      //   this.js_object_and_class = [],
-      //   this.js_object_and_class_open = [];
-      // }
+      // firebase.firebase.auth().currentUser.reload();
     }
   })
 </script>

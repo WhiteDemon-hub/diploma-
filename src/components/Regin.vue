@@ -2,8 +2,8 @@
     <div class="form">
         <v-form lazy-validation
         ref="regin"
-        v-model="valid"
-         @submit.prevent="Reg">
+        v-model="valid_reg"
+         @submit.prevent="Reg1">
             <h2 class="text-center">Регистрация</h2>
             <div class="form-group">
               <label for=""></label>
@@ -104,7 +104,7 @@ import Notification from '../interfaces/notification'
 export default Vue.extend({
     data () {
     return {
-      valid: true,
+      valid_reg: true,
       form: {
       } as Form,
       notification: {
@@ -127,8 +127,9 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions('user', ['LoadUser']),
-    Reg () {
+    Reg1 () {
       if ((this.$refs.regin as Vue & { validate: () => boolean }).validate()) {
+        localStorage.setItem('load_user', '0');
         firebase.firebase.auth().createUserWithEmailAndPassword(this.form.email, this.form.password)
           .then(async (userCredential : any) => {
             
@@ -145,6 +146,7 @@ export default Vue.extend({
             }
             user.set(data)
             const newUser : any = firebase.firebase.auth().currentUser
+            
             newUser.sendEmailVerification();
               await firebase.fs.collection('user_passing_task_js').doc().set({
               uid: userCredential.user.uid,
@@ -154,8 +156,10 @@ export default Vue.extend({
                   status: false,
                 }]
               });
-            this.$router.push({ name: 'Home' })
-          })
+            this.LoadUser();
+            localStorage.setItem('load_user', '1');
+            this.$forceUpdate;
+            })
           .catch((error) => {
             this.notification.text = error.message;
             this.notification.snackbar = true;

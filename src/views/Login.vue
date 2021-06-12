@@ -91,6 +91,7 @@ export default Vue.extend({
             {
                 firebase.firebase.auth().signInWithPopup(provider)
                 .then(async (result: any) => {
+                    localStorage.setItem('load_user', '1');
                     const user: any = await firebase.fs
                         .collection('users')
                         .doc(result.user.uid)
