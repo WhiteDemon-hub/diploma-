@@ -401,7 +401,11 @@
     },
     mounted()
     {
-      // firebase.firebase.auth().currentUser.reload();
+      if(localStorage.getItem('load_user') == '1')
+      {
+        // this.is_load = true;
+        this.Load();
+      }
     }
   })
 </script>
