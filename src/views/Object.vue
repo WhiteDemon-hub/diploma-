@@ -41,6 +41,7 @@
             <div class="d-flex justify-content-between ml-5 mr-5">
                 <button @click="Check" type="button" class="btn btn-primary mr-2 mt-2 mb-2">Проверить</button>
                 <button v-if="!task.end" @click="Next" :disabled="GetStatus" type="button" class="btn btn-primary mr-2 mt-2 mb-2">Далее</button>
+                <button v-if="task.end" @click="End" :disabled="GetStatus" type="button" class="btn btn-primary mr-2 mt-2 mb-2">На главную</button>
             </div>
         </div>
         <div class="d-flex flex-column w-75 m-auto" v-else>
@@ -105,6 +106,10 @@ export default {
     methods: {
       highlighter(code) {
         return highlight(code, languages.js); //returns html
+      },
+      End()
+      {
+        this.$router.push({ name: 'Home' })      
       },
       async Check()
       {
